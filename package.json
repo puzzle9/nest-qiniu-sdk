@@ -1,0 +1,34 @@
+{
+  "name": "nest-qiniu-sdk",
+  "version": "1.0.0",
+  "description": "qiniu-sdk for nestjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/puzzle9/nest-qiniu-sdk"
+  },
+  "author": "puzzle9",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "qiniu sdk",
+    "nestjs qiniu"
+  ],
+  "scripts": {
+    "build": "rimraf dist &&tsc -p tsconfig.build.json"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^8.0.0 || ^9.0.0"
+  },
+  "dependencies": {
+    "qiniu": "^7.8.0"
+  },
+  "devDependencies": {
+    "@nestjs/common": "^9.2.1",
+    "rimraf": "^4.1.2",
+    "typescript": "^4.9.4"
+  }
+}
