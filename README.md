@@ -38,6 +38,7 @@ export class AppModule {
 ```
 
 ```ts
+// app.controller.ts
 import {Controller, Get} from '@nestjs/common'
 
 import {QiniuService} from 'nest-qiniu-sdk'
