@@ -100,7 +100,7 @@ export class QiniuService {
    * @param callbackAuth 回调时请求的Authorization头部值
    * @param reqBody 回调的URL中的requestURI 请求Body，仅当请求的ContentType为application/x-www-form-urlencoded时才需要传入该参数
    */
-  getIsQiniuCallback(requestURI: string, callbackAuth: string, reqBody: string | null): boolean {
+  getIsQiniuCallback(requestURI: string, callbackAuth: string, reqBody = null): boolean {
     return qiniu.util.isQiniuCallback(this.mac(), requestURI, reqBody, callbackAuth)
   }
 }
