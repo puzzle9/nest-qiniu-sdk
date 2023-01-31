@@ -41,7 +41,7 @@ export class AppModule {
 // app.controller.ts
 import {Controller, Get} from '@nestjs/common'
 
-import {QiniuService} from 'nest-qiniu-sdk'
+import {QiniuService, util} from 'nest-qiniu-sdk'
 
 @Controller()
 export class AppController {
@@ -49,7 +49,7 @@ export class AppController {
     }
 
     @Get()
-    hiQiniu(): any {
+    hiQiniu(@Request() req): any {
         let options = this.QiniuService.getOptions(),
             access_key = this.QiniuService.getOptions('access_key'),
             secret_key = this.QiniuService.getOptions('secret_key'),
@@ -89,11 +89,17 @@ export class AppController {
         // 获取私有空间下载地址
         let download_private_url = this.QiniuService.getPrivateDownloadUrl(key, expires)
 
+        // 判断是否为七牛回调
+        let is_qiniu_callback = this.QiniuService.getIsQiniuCallback('request_full_url', req.headers['authorization'], req.body)
+
         // 抓取网络资源到空间
         let fetch_url = 'http://devtools.qiniu.com/qiniu.png'
         bucketManager.fetch(fetch_url, bucket, key, (err, respBody, respInfo) => {
             console.log(err, respBody, respInfo)
         })
+
+        // 工具相关
+        let isTimestampExpired = util.isTimestampExpired(1675274522)
     }
 }
 
